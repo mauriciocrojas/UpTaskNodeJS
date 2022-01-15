@@ -1,0 +1,25 @@
+{
+  "name": "uptasknode",
+  "version": "1.0.0",
+  "description": "Proyecto UpTask con Node y MVL",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon ./index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mauriciocrojas/UpTaskNodeJS.git"
+  },
+  "author": "Mauricio Rojas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mauriciocrojas/UpTaskNodeJS/issues"
+  },
+  "homepage": "https://github.com/mauriciocrojas/UpTaskNodeJS#readme",
+  "dependencies": {
+    "express": "^4.17.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
