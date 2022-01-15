@@ -4,7 +4,6 @@ const routes = require("./routes");
 
 //creamos un app de express
 const app = express();
-
 app.use("/", routes());
 
 //puerto donde correrá express
