@@ -6,6 +6,9 @@ const path = require("path");
 //creamos un app de express
 const app = express();
 
+//Donde cargar archivos estáticos
+app.use(express.static("public"));
+
 //habilitamos Pug
 app.set("view engine", "pug");
 
