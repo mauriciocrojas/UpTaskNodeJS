@@ -5,6 +5,9 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const { allowedNodeEnvironmentFlags } = require("process");
 
+//helpers con algunas funciones
+const helpers = require("./helpers");
+
 //Crar la conexión a la BD
 const db = require("./config/db");
 
@@ -26,6 +29,12 @@ app.set("view engine", "pug");
 
 //Añadimos carpeta de vistas
 app.set("views", path.join(__dirname, "./views"));
+
+//pasar vardump a la app
+app.use((req, res, next) =>{
+    res.locals.vardump = helpers.vardump;
+    next();
+})
 
 //Habilitamos bodyParser para leer datos del formulario
 app.use(bodyParser.urlencoded({extended: true}));
