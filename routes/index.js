@@ -12,17 +12,18 @@ module.exports = function(){
     //ruta para el home
     router.get("/", proyectosController.proyectosHome);
     router.get("/nuevo-proyecto", proyectosController.formularioProyecto);
-    router.post("/nuevo-proyecto", 
+    router.post("/nuevo-proyecto/", 
           body("nombre").not().isEmpty().trim().escape(),
           proyectosController.nuevoProyecto);
-
 
     //Listar proyectos
     router.get("/proyectos/:url", proyectosController.proyectoPorUrl);
     
     //Actualizar el Proyecto
     router.get("/proyecto/editar/:id", proyectosController.formularioEditar);
-
+    router.post("/nuevo-proyecto/:id", 
+          body("nombre").not().isEmpty().trim().escape(),
+          proyectosController.actualizarProyecto);
 
     return router;
 }
