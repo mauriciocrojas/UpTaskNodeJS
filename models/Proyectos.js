@@ -15,6 +15,8 @@ const Proyectos = db.define("proyectos", {
     url : Sequelize.STRING,
 
 },{
+    //Antes de impactar los datos en la base, implementamos un hook que modifica
+    //los datos para que puedan ser utilizados como url
     hooks: {
         beforeCreate(proyecto){
             const url = slug(proyecto.nombre).toLowerCase();
