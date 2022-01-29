@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Proyecto UpTask con Node y MVL",
   "main": "index.js",
-"scripts": {
+  "scripts": {
     "dev": "nodemon ./index.js",
     "start": "concurrently \"npm run dev \" \"npm run watch \"",
     "watch": "webpack -w --mode development"
@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/mauriciocrojas/UpTaskNodeJS#readme",
   "dependencies": {
+    "axios": "^0.25.0",
     "concurrently": "^7.0.0",
     "express": "^4.17.2",
     "express-validator": "^6.14.0",
@@ -27,7 +28,8 @@
     "sequelize": "^6.13.0",
     "sequelize-cli": "^6.4.1",
     "shortid": "^2.2.16",
-    "slug": "^5.2.0"
+    "slug": "^5.2.0",
+    "sweetalert2": "^11.3.10"
   },
   "devDependencies": {
     "@babel/core": "^7.16.12",
