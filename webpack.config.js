@@ -13,8 +13,8 @@ module.exports = {
                 test: /\.m?js$/,
                 use: {
                     loader: "babel-loader",
-                    option: {
-                        presets: ["@babel/present-env"]
+                    options: {
+                        presets: ["@babel/preset-env"]
                     }
                 }
             }
