@@ -37,12 +37,12 @@ if(btnEliminar){
                     "success"
                     );
                   
-                    /*
+                    
                   //redireccionamos al inicio
                   setTimeout(() => {
                       window.location.href = "/"
                   }, 2000);
-                  */
+                  
                 });
         }     
       });
