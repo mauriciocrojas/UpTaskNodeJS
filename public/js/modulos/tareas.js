@@ -1,3 +1,5 @@
+import axios from "axios";
+
 const tareas = document.querySelector(".listado-pendientes");
 
 if(tareas){
@@ -8,7 +10,15 @@ if(tareas){
             const icono = e.target;
             const idTarea = icono.parentElement.parentElement.dataset.tarea;
 
-            console.log(idTarea);
+            //request hacia /tareas/:id
+            const url = `${location.origin}/tareas/${idTarea}`;
+
+            axios.patch(url, { idTarea })
+                .then(function(respuesta){
+                    if(respuesta.status===200){
+                        icono.classList.toggle("completo");
+                    }
+                })
         }
     });
 
