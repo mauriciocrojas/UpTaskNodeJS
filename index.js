@@ -5,6 +5,8 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const { allowedNodeEnvironmentFlags } = require("process");
 const flash = require("connect-flash");
+const session = require("express-session");
+const cookieParser = require("cookie-parser");
 
 //helpers con algunas funciones
 const helpers = require("./helpers");
@@ -24,14 +26,14 @@ db.sync()
 //creamos un app de express
 const app = express();
 
-//Habilitamos bodyParser para leer datos del formulario
-app.use(bodyParser.urlencoded({extended: true}));
-
 //Donde cargar archivos estáticos
 app.use(express.static("public"));
 
 //habilitamos Pug
 app.set("view engine", "pug");
+
+//Habilitamos bodyParser para leer datos del formulario
+app.use(bodyParser.urlencoded({extended: true}));
 
 //Añadimos carpeta de vistas
 app.set("views", path.join(__dirname, "./views"));
@@ -39,10 +41,19 @@ app.set("views", path.join(__dirname, "./views"));
 //agregamos flash messages
 app.use(flash());
 
+app.use(cookieParser());
+
+//Sessiones nos permiten navegar entre distintas páginas sin volvernos a autenticar
+app.use(session({
+    secret: "supersecreto",
+    resave: false,
+    saveUninitialized: false
+}));
 
 //pasar vardump a la app
 app.use((req, res, next) =>{
     res.locals.vardump = helpers.vardump;
+    res.locals.mensajes = req.flash();
     next();
 })
 
