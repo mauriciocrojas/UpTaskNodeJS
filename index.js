@@ -4,6 +4,7 @@ const routes = require("./routes");
 const path = require("path");
 const bodyParser = require("body-parser");
 const { allowedNodeEnvironmentFlags } = require("process");
+const flash = require("connect-flash");
 
 //helpers con algunas funciones
 const helpers = require("./helpers");
@@ -23,6 +24,9 @@ db.sync()
 //creamos un app de express
 const app = express();
 
+//Habilitamos bodyParser para leer datos del formulario
+app.use(bodyParser.urlencoded({extended: true}));
+
 //Donde cargar archivos estáticos
 app.use(express.static("public"));
 
@@ -32,14 +36,15 @@ app.set("view engine", "pug");
 //Añadimos carpeta de vistas
 app.set("views", path.join(__dirname, "./views"));
 
+//agregamos flash messages
+app.use(flash());
+
+
 //pasar vardump a la app
 app.use((req, res, next) =>{
     res.locals.vardump = helpers.vardump;
     next();
 })
-
-//Habilitamos bodyParser para leer datos del formulario
-app.use(bodyParser.urlencoded({extended: true}));
 
 app.use("/", routes());
 
