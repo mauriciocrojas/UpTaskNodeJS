@@ -22,7 +22,9 @@ exports.crearCuenta = async (req, res) => {
         req.flash("error", error.errors.map(error => error.message));
         res.render("crearCuenta", {
             mensajes: req.flash(),
-            nombrePagina: "Crear Cuenta en UpTask"
+            nombrePagina: "Crear Cuenta en UpTask",
+            email : email,
+            password : password
         });
     }
 }
