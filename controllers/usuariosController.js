@@ -6,6 +6,8 @@ exports.formCrearCuenta = (req, res) => {
     });
 }
 
+
+// Es el que dibuja la vista en el navegador
 exports.formIniciarSesion = (req, res) => {
     const { error } = res.locals.mensajes;
     res.render("iniciarSesion", {
