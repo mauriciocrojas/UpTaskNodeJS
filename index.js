@@ -67,3 +67,6 @@ app.use("/", routes());
 
 //puerto donde correrá express
 app.listen(3000);
+
+
+require("./handlers/email");
