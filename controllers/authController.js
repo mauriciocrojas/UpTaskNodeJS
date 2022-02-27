@@ -1,5 +1,7 @@
 const passport = require("passport");
 const Usuarios = require("../models/Usuarios");
+const Sequelize = require("sequelize");
+const Op = Sequelize.Op;
 const crypto = require("crypto");
 
 exports.autenticarUsuario = passport.authenticate("local", {
@@ -54,7 +56,7 @@ exports.enviarToken = async (req, res) => {
 
 }   
 
-exports.resetPassword = async (req, res) => {
+exports.validarToken = async (req, res) => {
     const usuario = await Usuarios.findOne({
         where: {
             token: req.params.token
@@ -72,4 +74,24 @@ exports.resetPassword = async (req, res) => {
     res.render("resetPassword", {
         nombrePagina: "Restablecer Contraseña"
     })
+}
+
+//Cambia el password por uno nuevo
+exports.actualizarPassword = async (req, res) => {
+
+    //Verifica token válido y fecha de expiración
+    const usuario = await Usuarios.findOne({
+        where: {
+            token: req.params.token,
+            expiracion: {
+                [Op.gte] : Date.now()
+            }
+        }
+    });
+
+    //Verificamos si el usuario existe
+    if(!usuario){
+        req.flash("error", "No válido");
+        res.redirect("/restablecer");
+    }
 }
