@@ -64,6 +64,7 @@ module.exports = function(){
       //Crear cuenta nueva
       router.get("/crear-cuenta", usuariosController.formCrearCuenta);
       router.post("/crear-cuenta", usuariosController.crearCuenta);
+      router.get("/confirmar/:correo", usuariosController.confirmarCuenta);
 
       //Iniciar Sesión
       router.get("/iniciar-sesion", usuariosController.formIniciarSesion);
