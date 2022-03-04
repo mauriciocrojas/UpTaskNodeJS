@@ -29,9 +29,12 @@ exports.cambiarEstadoTarea = async (req, res) => {
 
     //cambiamos el estado
     let estado = 0;
+
+    // Si el estado que viene es 0 significa que hay que cambiarlo
     if(tarea.estado === estado){
         estado = 1;
     }
+    
     tarea.estado = estado;
 
     const resultado = await tarea.save();
@@ -45,7 +48,7 @@ exports.eliminarTarea = async (req, res) => {
 
     const { id } = req.params;
 
-    //Eliminamos la tarea
+    //Eliminamos la tarea por ID
     const resultado = await Tareas.destroy({where : { id : id }});
 
     if(!resultado) return next();

@@ -6,6 +6,7 @@ const crypto = require("crypto");
 const bcrypt = require("bcrypt-nodejs");
 const enviarEmail = require("../handlers/email");
 
+//Autenticar el usuario
 exports.autenticarUsuario = passport.authenticate("local", {
     successRedirect: "/",
     failureRedirect: "/iniciar-sesion",

@@ -130,7 +130,7 @@ exports.actualizarProyecto = async (req, res) => {
         errores.push({"texto": "Agrega nombre al Proyecto"});
     }
     
-    //si hay errores
+    //si hay errores en la BD
     if(errores.length>0){
         res.render("nuevoProyecto", {
             nombrePagina: "Nuevo Proyecto",
@@ -138,7 +138,7 @@ exports.actualizarProyecto = async (req, res) => {
             proyectos
         }) 
     } else {
-        //No hay errores
+        //No hay errores en la BD
         // Insertar en la BD    
         await Proyectos.update(
             {nombre: nombre},
@@ -155,6 +155,7 @@ exports.eliminarProyecto = async (req, res, next) => {
     const {urlProyecto} = req.query;
     const resultado = await Proyectos.destroy({where: {url : urlProyecto}});
 
+    //Si no hay resultado por algún motivo, salteamos al siguiente middleware
     if(!resultado){
         return next();
     }
