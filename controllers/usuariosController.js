@@ -68,7 +68,9 @@ exports.formRestablecerPassword = (req, res) => {
 //Cambia el estado de una cuenta
 exports.confirmarCuenta = async (req, res) => {
     const usuario = await Usuarios.findOne({
-        email: req.params.correo
+        where: {
+            email: req.params.correo
+        }
     });
 
     //Si no existe el usuario
