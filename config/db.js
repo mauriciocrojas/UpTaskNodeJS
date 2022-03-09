@@ -11,7 +11,6 @@ const db = new Sequelize(
   host: "localhost",
   dialect: "mysql",
   port: process.env.BD_PORT,
-  operatorAliases: false,
   define: {
     timestamps: false,
   },
